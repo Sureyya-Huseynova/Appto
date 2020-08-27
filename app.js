@@ -1,4 +1,3 @@
-
 var Cardes = document.querySelector('.cardes');
 function Add_Card() {
     var card = `
@@ -16,7 +15,6 @@ function Add_Card() {
     </div>  
  `
     Cardes.innerHTML += card;
-
 };
 
 function Add_new_todo() { // +  btn click etmek yeni app to do yazmaq ucun 
@@ -24,20 +22,27 @@ function Add_new_todo() { // +  btn click etmek yeni app to do yazmaq ucun
     var newtodo = `
         <div class="mytodo_move"> </div>    <!-- inputa elave edeceyimiz to do save edib input sildikde bura daxil olacaq-->
         <div class="mytodo_area">           <!--  buradaki inputa yazib save etmek -->
-            <input type="text" placeholder="Enter your task" class="mytodo_input">
+            <input type="text" placeholder="Enter your task" class="mytodo_input" onkeypress="return KeyPressEnter(event);">
             <span class="save">
             <i class="fas fa-download"></i>
             </span>
         </div>  
         `
-    card_body.innerHTML += newtodo;
-    var mytodo_move = document.querySelector('.mytodo_move');
-    var mytodo_area = document.querySelector('.mytodo_area');
-    var mytodo_input = document.querySelector('.mytodo_input');
-    var save = document.querySelector('.save');
-    mytodo_move.style.marginBottom = "2rem";
-    save.addEventListener("click", SaveInputValue);
-    function SaveInputValue() {
+     card_body.innerHTML += newtodo;
+     mytodo_move = document.querySelector('.mytodo_move');
+     mytodo_area = document.querySelector('.mytodo_area');
+     mytodo_input = document.querySelector('.mytodo_input');
+     save = document.querySelector('.save');
+     mytodo_move.style.marginBottom = "2rem";
+     save.addEventListener("click",SaveInputValue);
+};
+function KeyPressEnter(event) {
+    if(event.keyCode === 13){
+        SaveInputValue();
+     mytodo_input.click();
+    }
+};
+function SaveInputValue() {
         var onetodo = document.createElement('p'); // inputa yazdiqim her to do app 1 p tag icine elave etmek ve mytodo_area gondermek.
         onetodo.className = "onetask";
         radio = document.createElement('input');
@@ -48,5 +53,4 @@ function Add_new_todo() { // +  btn click etmek yeni app to do yazmaq ucun
         mytodo_move.appendChild(onetodo);
         mytodo_area.remove();
         mytodo_input.innerHTML = '';
-    }
 };
