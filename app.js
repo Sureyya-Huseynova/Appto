@@ -18,19 +18,19 @@ function Add_Card() {
  `
     Cards.innerHTML += card;
 };
-function Add_new_todo() {              // +  btn click etmek yeni app to do yazmaq ucun
+function Add_new_todo(){                                          // +  btn click etmek yeni app to do yazmaq ucun
     var card_bodies = Cards.querySelectorAll('.card_body');
     card_bodies.forEach(card_body => {
         if (event.target.id == card_body.id) {
             newtodo = `
-                <div class="mytodo_move"> </div>    <!-- inputa elave edeceyimiz to do save edib input sildikde bura daxil olacaq-->
-                <div class="mytodo_area">           <!--  buradaki inputa yazib save etmek -->
-                    <input type="text" placeholder="Enter your task" class="mytodo_input" onkeypress="return KeyPressEnter(event);">
-                    <span class="save">
-                    <i class="fas fa-download"></i>
-                    </span>
-                </div>       
-            `
+        <div class="mytodo_move" id="${index}"> </div>           <!-- inputa elave edeceyimiz to do save edib input sildikde bura daxil olacaq-->
+        <div class="mytodo_area">                                <!--  buradaki inputa yazib save etmek -->
+            <input type="text" placeholder="Enter your task" class="mytodo_input" onkeypress="return KeyPressEnter(event);" id="${index}">
+            <span class="save">
+            <i class="fas fa-download" id="${index}"></i>
+            </span>
+        </div>  
+        `
             card_body.innerHTML += newtodo;
             mytodo_move = document.querySelector('.mytodo_move');
             mytodo_area = document.querySelector('.mytodo_area');
@@ -38,6 +38,7 @@ function Add_new_todo() {              // +  btn click etmek yeni app to do yazm
             save = document.querySelector('.save');
             mytodo_move.style.marginBottom = "2rem";
             save.addEventListener("click", SaveInputValue);
+
         }
     })
 };
@@ -55,7 +56,13 @@ function SaveInputValue() {
     radio.style.marginRight = "1rem";
     onetodo.appendChild(radio);
     onetodo.innerHTML += mytodo_input.value;
-    mytodo_move.appendChild(onetodo);
-    mytodo_area.remove();
-    mytodo_input.innerHTML = '';
+
+    document.querySelectorAll(".mytodo_move").forEach(mytodo_move_one => {
+        if (mytodo_move_one.id == event.target.id) {
+            console.log(mytodo_move_one);
+            mytodo_move_one.appendChild(onetodo);
+            mytodo_area.remove();
+            mytodo_input.innerHTML = '';
+        }
+    })
 };
