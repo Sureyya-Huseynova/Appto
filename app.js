@@ -18,16 +18,18 @@ function Add_Card() {
  `
     Cards.innerHTML += card;
 };
-function Add_new_todo(){                                          // +  btn click etmek yeni app to do yazmaq ucun
+var i = 0;
+function Add_new_todo() {
+    i++;
     var card_bodies = Cards.querySelectorAll('.card_body');
     card_bodies.forEach(card_body => {
         if (event.target.id == card_body.id) {
             newtodo = `
-        <div class="mytodo_move" id="${index}"> </div>           <!-- inputa elave edeceyimiz to do save edib input sildikde bura daxil olacaq-->
+        <div class="mytodo_move" id="${i}"> </div>           <!-- inputa elave edeceyimiz to do save edib input sildikde bura daxil olacaq-->
         <div class="mytodo_area">                                <!--  buradaki inputa yazib save etmek -->
-            <input type="text" placeholder="Enter your task" class="mytodo_input" onkeypress="return KeyPressEnter(event);" id="${index}">
+            <input type="text" placeholder="Enter your task" class="mytodo_input" onkeypress="return KeyPressEnter(event);" id="${i}">
             <span class="save">
-            <i class="fas fa-download" id="${index}"></i>
+            <i class="fas fa-download" id="${i}">save</i>
             </span>
         </div>  
         `
@@ -48,7 +50,7 @@ function KeyPressEnter(event) {
         mytodo_input.click();
     }
 };
-function SaveInputValue() {
+function SaveInputValue() {                                          // +  btn click etmek yeni app to do yazmaq ucun
     var onetodo = document.createElement('p'); // inputa yazdiqim her to do app 1 p tag icine elave etmek ve mytodo_area gondermek.
     onetodo.className = "onetask";
     radio = document.createElement('input');
@@ -56,10 +58,8 @@ function SaveInputValue() {
     radio.style.marginRight = "1rem";
     onetodo.appendChild(radio);
     onetodo.innerHTML += mytodo_input.value;
-
     document.querySelectorAll(".mytodo_move").forEach(mytodo_move_one => {
         if (mytodo_move_one.id == event.target.id) {
-            console.log(mytodo_move_one);
             mytodo_move_one.appendChild(onetodo);
             mytodo_area.remove();
             mytodo_input.innerHTML = '';
