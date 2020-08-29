@@ -29,7 +29,7 @@ function Add_new_todo() {
         <div class="mytodo_area">                                <!--  buradaki inputa yazib save etmek -->
             <input type="text" placeholder="Enter your task" class="mytodo_input" onkeypress="return KeyPressEnter(event);" id="${i}">
             <span class="save">
-            <i class="fas fa-download" id="${i}">save</i>
+            <i class="fas fa-download" id="${i}"></i>
             </span>
         </div>  
         `
