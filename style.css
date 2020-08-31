@@ -13,22 +13,36 @@ body{
 .add_card{
     width: 20%;
     margin: 5rem 40%;
-    padding: 0.5rem 2rem;
+    padding: 0.7rem 2.5rem;
     background-color: rgb(255, 133, 11);
     border: none;
     border-radius: 3px;
     color: white;
 }
+.add_card:hover{
+    background-color: rgb(179, 93, 7);
+}
 .card{
     width: 35rem;
-    min-height: 20rem;
+    min-height: 30rem;
     max-height: 95rem;
-    border: 3px solid rgb(255, 116, 2);
+    border: 12px solid rgb(255, 116, 2);
     background-color: rgb(255, 255, 255);
     margin: 3rem;
     position: relative;
     padding: 1.5rem;
-
+    border-radius: 3px;
+}
+.delete_card{
+    cursor: pointer;
+    font-size: 3rem;
+    display: block;
+    margin-left: 45%;
+    width: 12%;
+    font-weight: 900;
+}
+.delete_card:hover{
+    color: rgb(255, 38, 38);
 }
 .head{
     display: flex;
@@ -43,6 +57,18 @@ body{
     padding: 2rem;
 
     display: none;
+}
+.clear{
+    display: block;
+    font-size: 3rem;
+    cursor: pointer;
+    color: rgb(37, 184, 8);
+    margin-left: 45%;
+    margin-bottom: 4rem;
+    width: 13%;
+}
+.clear:hover{
+    color: rgb(36, 172, 9);
 }
 .add_input{
     display: flex;
@@ -75,7 +101,9 @@ body{
     border-radius: 3px;
     outline: none;
     margin-bottom: 6rem;
-
+}
+.mytodo_input:focus{
+    background-color: rgb(191, 230, 226);
 }
 .mytask:focus{
    background-color: rgb(233, 247, 233);
@@ -83,4 +111,7 @@ body{
 .onetask{
     font-size: 1.5rem;
     margin-bottom: 2rem;
+}
+.onetask:first-child{
+    margin-top: 5rem !important;
 }
