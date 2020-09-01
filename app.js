@@ -4,20 +4,23 @@ function Add_Card() {
     index++;
     newcard = `
     <div class="card">
-    <span class="delete_card" onclick="DeleteCard()">X</span>
-        <div class="head">
-            <span class="date"></span>
-        </div>
+        <span class="delete_card" onclick="Suredeletecard()">X</span>
+        <div class = "suredeletecard"> Are you sure delete this card ?
+            <p>
+            <span class = "yes" onclick="YesDeleteCard()"> Yes</span> 
+            <span class="no" onclick="NoDeleteCard()">No</span>
+            </p> 
+       </div>
         <hr>
         <div class="card_body" id = "${index}">  
              <div class="mytodo_area">
-                <span class="clear" onclick = "Clear()">
-                <i class="fas fa-trash-alt"  id = "${index}"></i>
+                <span class="clear_select_todo" onclick = "ClearSelectToDo()"  id = "${i}">
+                    <i class="fas fa-trash-alt"></i>
                 </span>
                  <div class="mytodo_move" id = "${index}"></div>
                  <input type="text" placeholder="Enter your task" class="mytodo_input"  id = "${index}"  onkeypress="return KeyPressEnter(event);">
                  <span class="save" onclick = "return SaveInputValue(event)">
-                 <i class="fas fa-download" id = "${index}"></i>
+                    <i class="fas fa-download" id = "${index}"></i>
                  </span>
             </div>
         </div>
@@ -69,22 +72,37 @@ function SaveInputValue() {
         onetodo.innerHTML += event_input.value;
         event_mytodo_move.appendChild(onetodo);
         event_input.value = "";
+        event.target.parentElement.parentElement.querySelectorAll("input[type=checkbox]").forEach(radioone => {
+            radioone.addEventListener("click",  ShowDeleteBox);
+        })     
     }
 };
 
-// isharelediyimiz to do lari silmek
-function Clear() {
+// Show Delete Box (trash)
+function ShowDeleteBox() {
+      event.target.parentElement.parentElement.parentElement.querySelector('.clear_select_todo').style.display = "block";
+}
+
+// which select to do line. This line delete
+function ClearSelectToDo() {
     radioinputes = event.target.parentElement.parentElement.querySelectorAll('input[type=checkbox]');
     onetodolines = event.target.parentElement.parentElement.querySelectorAll('.onetask');
     for (j = 0; j < radioinputes.length; j++) {
         if (radioinputes[j].checked == true) {
             onetodolines[j].remove();
             radioinputes[j].remove();
+            event.target.parentElement.style.display="none";
         }
     }
 };
 
-// acib istifade etmedyimiz cardi silmek
-function DeleteCard(){
-    event.target.parentElement.remove();
+// show div which see yes delete card or does not delete card
+function Suredeletecard() { 
+    event.target.parentElement.querySelector(".suredeletecard").style.display = "block";  
 }
+function NoDeleteCard() {
+    event.target.parentElement.parentElement.style.display = "none";    // No btn click 
+}
+function YesDeleteCard() {  
+    event.target.parentElement.parentElement.parentElement.remove();     // Yes btn click
+};
